@@ -1,0 +1,61 @@
+<div class="col-md-1 p-b-30">
+					
+				</div>
+				<div class="col-md-5 p-b-30" style="background-color: rgb(255, 239, 190);">
+					<form action="inc/verif-login.php" method="POST" class="leave-comment">
+						<h4 class="m-text26 p-b-36 p-t-15">
+							Se connecter maintenant!
+						</h4>
+
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Pseudo" required>
+						</div>
+
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="mdp" placeholder="Mot de passe" required>
+						</div>
+						<div class="w-size25">
+						<?php if(isset($_GET['error']) and $_GET['error']==1){ ?>
+							<p class="m-text12 p-b-36 p-t-15" style="color:red; width:500px;">Mot de passe incorrect!!!</p>
+						<?php }else if(isset($_GET['error']) and $_GET['error']==2){?> 
+							<p class="m-text12 p-b-36 p-t-15" style="color:red; width:500px;">Pseudo ou mot de passe incorrect!!!</p>
+						<?php }	?>
+							<!-- Button -->
+							<button class=" size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+								Se connecter 
+							</button>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-1 p-b-30">
+					
+				</div>
+				<div class="col-md-5 p-b-30"  style="background-color: rgb(255, 239, 190);">
+					<form  action="inc/verif-sign.php" method="POST" class="leave-comment">
+						<h4 class="m-text26 p-b-36 p-t-15">
+							S'inscrire maintenant!
+						</h4>
+						
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="nom" placeholder="Votre nom" required>
+						</div>
+						
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Votre pr&eacute;nom" required>
+						</div>
+						
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Votre Email" required>
+						</div>
+
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="mdp" placeholder="Mot de passe" required>
+						</div>
+						<div class="w-size25">
+							<!-- Button -->
+							<button class=" size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+								Valider
+							</button>
+						</div>
+					</form>
+				</div>
