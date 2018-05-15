@@ -38,22 +38,23 @@ create table Users(
 	mdpUser varchar(50),
 	statusAdmin int
 )Engine=InnoDB;
-	
-create table Panier(
+
+create table Location(
 	ID INTEGER NOT NULL AUTO_INCREMENT primary key,
 	idUser int,
+	daty date,
 	foreign key (idUser) references Users(ID)
 )Engine=InnoDB;
 
-create table PanierDetail(
+create table LocationDetail(
 	ID INTEGER NOT NULL AUTO_INCREMENT primary key,
-	idPanier int,
+	idLocation int,
 	quantite int,
 	dateDebut date,
 	dateFin date,
 	pu decimal(10, 2),
 	idVehicule int,
-	foreign key (idPanier) references Panier(ID),
+	foreign key (idLocation) references Location(ID),
 	foreign key (idVehicule) references Vehicule(ID)
 )Engine=InnoDB;
 
@@ -72,24 +73,11 @@ create table BonCommandeDetail(
 	pu decimal(10,2),
 	dateDebut date,
 	dateFin date,
-	foreign key (idBonCommande) references BonCommande(ID)
-)Engine=InnoDB;
-
-create table Location(
-	ID INTEGER NOT NULL AUTO_INCREMENT primary key,
-	idUser int,
-	foreign key (idUser) references Users(ID)
-)Engine=InnoDB;
-
-create table LocationDetail(
-	ID INTEGER NOT NULL AUTO_INCREMENT primary key,
-	idLocation int,
-	dateDebut date,
-	dateFin date,
-	pu decimal(10, 2),
-	idVehicule int,
-	foreign key (idLocation) references Location(ID),
-	foreign key (idVehicule) references Vehicule(ID)
+	idAgenceRetirement int,
+	idAgenceRetour int,
+	foreign key (idBonCommande) references BonCommande(ID),
+	foreign key (idAgenceRetirement) references Agence(ID),
+	foreign key (idAgenceRetour) references Agence(ID)
 )Engine=InnoDB;
 
 create table BonLivraison(
@@ -97,6 +85,7 @@ create table BonLivraison(
 	idUser int,
 	idLocation int,
 	status int,
+	daty date,
 	foreign key (idUser) references Users(ID),
 	foreign key (idLocation) references Location(ID)
 )Engine=InnoDB;
@@ -104,11 +93,11 @@ create table BonLivraison(
 create table BonLivraisonDetail(
 	ID INTEGER NOT NULL AUTO_INCREMENT primary key,
 	idBonLivraison int,
-	idAgence int,
+	idAgenceRetirement int,
 	prix decimal(10,2),
 	dateLivraison date,
 	foreign key (idBonLivraison) references BonLivraison(ID),
-	foreign key (idAgence) references Agence(ID)
+	foreign key (idAgenceRetirement) references Agence(ID)
 )Engine=InnoDB;
 
 create table TVA(
@@ -149,12 +138,25 @@ CREATE TABLE ModeDePaiement(
 	description varchar(50)
 )Engine=InnoDB;
 
+INSERT INTO ModeDePaiement VALUES(0,'Mobile Money');
+INSERT INTO ModeDePaiement VALUES(0,'Chèque');
+INSERT INTO ModeDePaiement VALUES(0,'Carte');
+INSERT INTO ModeDePaiement VALUES(0,'Espèce');
+
 CREATE TABLE ModeDePaiement2(
 	ID INTEGER NOT NULL AUTO_INCREMENT primary key,
 	idmodedepaiement int not null,
 	description varchar(50),
 	FOREIGN KEY(idmodedepaiement)REFERENCES ModeDePaiement(ID)
 )Engine=InnoDB;
+
+INSERT INTO ModeDePaiement2 VALUES(0,1,'Mvola');
+INSERT INTO ModeDePaiement2 VALUES(0,2,'Orange money');
+INSERT INTO ModeDePaiement2 VALUES(0,3,'Airtel money');
+
+INSERT INTO ModeDePaiement2 VALUES(0,1,'BOA');
+INSERT INTO ModeDePaiement2 VALUES(0,2,'BNI');
+INSERT INTO ModeDePaiement2 VALUES(0,3,'BMOI');
 
 create table Payement(
 	ID INTEGER NOT NULL AUTO_INCREMENT primary key,
